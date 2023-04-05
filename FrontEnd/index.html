@@ -14,13 +14,13 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="./filtres_projets.js" defer></script>
-	<script src="./modal.js" defer></script>
+	<script type = "module" src="./filtres_projets.js" defer></script>
+	
 </head>
 
 <body>
 	<header>
-		<div class="en_tete_mode_edition">
+		<div class="en_tete_mode_edition" id="btn_modifier">
 			<i class="fa-solid fa-pen-to-square" id="modif_photo_profil">
 				<a href="#"><p>modifier</p></a>
 			</i>
@@ -28,12 +28,12 @@
 			<br>
 		</div>
 		<div class="en_tete_principale">
-			<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 			<nav>
 				<ul>
 					<li>projets</li>
 					<li>contact</li>
-					<li><a href="login.html">login</a></li>
+					<li><a class="login_logout" href="login.html"></a></li>
 					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 				</ul>
 			</nav>
@@ -43,16 +43,17 @@
 		<section id="introduction">
 			<figure class="photo_icone_modif">
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<div class="modif_profil">
+				<div class="modif_profil" id="btn_modifier">
 				<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-				<button><p>modifier</p></button>
+				<button id="btn_modifier"><p>modifier</p></button>
 				</div>				
 			</figure >			
 			<article>
-				<div class="modif_texte_présentation">
+				<div class="modif_texte_présentation" id="btn_modifier">
 				<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-				<button><p>modifier</p></button>
+				<button id="btn_modifier"><p>modifier</p></button>
 				</div>
+				<div>
 				<h2>Designer d'espace</h2>
 				<br>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
 				livraison finale du chantier.</br>
@@ -61,37 +62,38 @@
 				chantier sera assuré dans le souci du détail, le respect du planning et du budget.</br>
 				<br>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 				décorateur(trice)</br>
+			</div>
 			</article>
 		</section>	
 		<section>
 			<div class="portfolio">
 				<div class="en_tete_portfolio">
 				<h2>Mes Projets</h2>
-				<div class="modif_projets">
+				<div class="modif_projets" id="btn_modifier">
 					<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-					<button class="modal-btn modal-trigger"><p>modifier</p></button>
+					<button class="modal-btn modal-trigger" id="btn_modifier_gallery"><p>modifier</p></button>
 				</div>
 			</div>
-				<div class="modal-container">
-					<div class="overlay modal-trigger"></div>
+				<div class="modal-container" id="modal-container">
+					<div class="overlay "></div>
 					<div class="modal">	
 					<div class="modal_header_button">
-						<button class="modal_close modal-trigger">X</button>
+						<button class="modal_close">X</button>
 					</div>
-					<div class="modal_header_title">
-						<h3>Galerie photo</h3>
+					<div class="modal_header_title" aria-label="title_modal">
+						<h3 id="title_modal">Galerie photo</h3>
 					</div>
 					<div class="modal_body">
-						<div class="modal_gallery">
+						<div class="modal_gallery" id="modal_gallery">
 
 						</div>
 					</div>
 					<div class="modal_footer">
 						<div class="modal_btn_ajout">
-							<button class="btn_ajout_photo modal-trigger">Ajouter une photo</button>
+							<button class="btn_ajout_photo ">Ajouter une photo</button>
 
 							<div class="modal_btn_supprimer">
-								<button class="btn_supprimer_galerie modal-trigger">Supprimer la galerie</button>
+								<button class="btn_supprimer_galerie ">Supprimer la galerie</button>
 							</div>
 						</div>
 					</div>

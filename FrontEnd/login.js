@@ -1,5 +1,6 @@
-
-document.querySelector("email"),
+import storage from "./storage.js";
+    
+    document.querySelector("email"),
     document.querySelector("password"),
     document.querySelector('form input[type="submit"]').addEventListener('click', async function (e) {
         e.preventDefault();
@@ -15,16 +16,13 @@ document.querySelector("email"),
         }
         console.log("form valid", valid);
         if (valid) {
-            //récupérer email et password utilisateur (?)
+            //récupérer email et password utilisateur 
             const form = {
                 email: document.getElementById("email"),
                 password: document.getElementById("password")
             };
             console.log("form values", form);
-            /*let token = {}
-            if (localStorage.token) {
-                token = { 'Authorization': localStorage.token }
-            }*/
+            
             //Connexion API
             fetch('http://localhost:5678/api/users/login', {
                 method: 'POST',
@@ -40,9 +38,10 @@ document.querySelector("email"),
                 //Reponse API correcte
                 .then((response) => {
                     if (response.status == 200) {
-                     
-                        return response.json() } 
-                   
+
+                        return response.json()
+                    }
+
                     else {
                         throw Error(response.statusText)
                     }
@@ -53,8 +52,11 @@ document.querySelector("email"),
                     if (data.error) {
                         alert("Erreur dans l’identifiant ou le mot de passe");
                     } else {
+                        storage.save(data)
+                        //sessionStorage.setItem('token', data.token);
+                        //sessionStorage.setItem('userId', data.userId);
                         //Evite d'ouvrir une nouvelle fenetre.
-                        sessionStorage.setItem('token', (data.token.JSON));
+                        //window.location = "/index.html" ; pour eviter localhost 5500 lorsuq'on déploit
                         window.location.assign("http://127.0.0.1:5500/FrontEnd/index.html");
                     }
                 })
@@ -65,8 +67,3 @@ document.querySelector("email"),
     }
     );
 
-
-
-//function saveToken(monToken){
-//    sessionStorage.setItem('token', monToken.token);
-//}
