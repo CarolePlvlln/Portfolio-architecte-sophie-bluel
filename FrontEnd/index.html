@@ -14,15 +14,18 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type = "module" src="./filtres_projets.js" defer></script>
-	
+	<script type="module" src="./filtres_projets.js" defer></script>
+	<script type="module" src="./modale.js" defer></script>
+
 </head>
 
 <body>
 	<header>
 		<div class="en_tete_mode_edition" id="btn_modifier">
 			<i class="fa-solid fa-pen-to-square" id="modif_photo_profil">
-				<a href="#"><p>modifier</p></a>
+				<a href="#">
+					<p>modifier</p>
+				</a>
 			</i>
 			<button class="btn_modif_mode" href="#">publier les changements</button>
 			<br>
@@ -44,60 +47,91 @@
 			<figure class="photo_icone_modif">
 				<img src="./assets/images/sophie-bluel.png" alt="">
 				<div class="modif_profil" id="btn_modifier">
-				<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-				<button id="btn_modifier"><p>modifier</p></button>
-				</div>				
-			</figure >			
+					<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
+					<button id="btn_modifier">
+						<p>modifier</p>
+					</button>
+				</div>
+			</figure>
 			<article>
 				<div class="modif_texte_présentation" id="btn_modifier">
-				<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-				<button id="btn_modifier"><p>modifier</p></button>
+					<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
+					<button id="btn_modifier">
+						<p>modifier</p>
+					</button>
 				</div>
 				<div>
-				<h2>Designer d'espace</h2>
-				<br>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
-				livraison finale du chantier.</br>
-				<br>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et
-				les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-				chantier sera assuré dans le souci du détail, le respect du planning et du budget.</br>
-				<br>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
-				décorateur(trice)</br>
-			</div>
+					<h2>Designer d'espace</h2>
+					<br>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
+					livraison finale du chantier.</br>
+					<br>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et
+					les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
+					chantier sera assuré dans le souci du détail, le respect du planning et du budget.</br>
+					<br>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
+					décorateur(trice)</br>
+				</div>
 			</article>
-		</section>	
+		</section>
 		<section>
 			<div class="portfolio">
 				<div class="en_tete_portfolio">
-				<h2>Mes Projets</h2>
-				<div class="modif_projets" id="btn_modifier">
-					<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-					<button class="modal-btn modal-trigger" id="btn_modifier_gallery"><p>modifier</p></button>
+					<h2>Mes Projets</h2>
+					<div class="modif_projets" id="btn_modifier">
+						<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
+						<button class="modal-btn modal-trigger" id="btn_modifier_gallery">
+							<p>modifier</p>
+						</button>
+					</div>
 				</div>
-			</div>
 				<div class="modal-container" id="modal-container">
 					<div class="overlay "></div>
-					<div class="modal">	
-					<div class="modal_header_button">
-						<button class="modal_close">X</button>
-					</div>
-					<div class="modal_header_title" aria-label="title_modal">
-						<h3 id="title_modal">Galerie photo</h3>
-					</div>
-					<div class="modal_body">
-						<div class="modal_gallery" id="modal_gallery">
-
+					<div class="modal">
+						<div class="modal_header_button">
+							<button class="icon_retour" id="icon_retour"><i class="fa-solid fa-arrow-left"></i></button>
+							<button class="modal_close">X</button>
 						</div>
-					</div>
-					<div class="modal_footer">
-						<div class="modal_btn_ajout">
-							<button class="btn_ajout_photo ">Ajouter une photo</button>
+						<div class="modal_header_title" aria-label="title_modal">
+							<h3 id="title_modal">Galerie photo</h3>
+						</div>
+						<form method="post" enctype="multipart/form-data" class="modal_body">
+							<div class="modal_gallery" id="modal_gallery"></div>
+							<div class="cadre_ajout_projet">
+								<div class="fond_ajout_projet">
+									<i class="fa-regular fa-image"></i>
+									<input type="file" id="image_projet" accept=".jpg, .png">
+									<button for="image_projet" class="btn_upload" type="button">+Ajouter une photo</button>
+									<p>jpg, png : 4mo max</p>
+								</div>
+								<div class="champs_ajout_projet">
+									<label for="titre_nouveau_projet">Titre</label>
+									<input type="titre_projet" name="titre_projet" id="champs_projet">
+									<label for="catégorie-select" class="choisir_categorie"
+										id="champs_projet">Catégorie</label>
+									<select name="catégorie_projet" id="categorie_projet">
+										<option value=""></option>
+										<option value="objet">objet</option>
+										<option value="appartement">appartement</option>
+										<option value="bar_restaurant">Bar & restaurant</option>
+									</select>
+								</div>
+							</div>
+						</form>
 
-							<div class="modal_btn_supprimer">
-								<button class="btn_supprimer_galerie ">Supprimer la galerie</button>
+						<div class="modal_footer">
+							<div class="btn_modal_galerie">
+								<div class="modal_btn_ajout modal_galerie">
+									<button class="btn_ajout_photo ">Ajouter une photo</button>
+									<div class="modal_btn_supprimer">
+										<button class="btn_supprimer_galerie ">Supprimer la galerie</button>
+									</div>
+								</div>
+
+							</div>
+							<div class="btn_valider">
+								<button id="btn_valider_image">Valider</button>
 							</div>
 						</div>
 					</div>
-				</div>
 				</div>
 
 

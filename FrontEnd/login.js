@@ -1,12 +1,12 @@
 import storage from "./storage.js";
     
-    document.querySelector("email"),
-    document.querySelector("password"),
-    document.querySelector('form input[type="submit"]').addEventListener('click', async function (e) {
+ 
+    const loginForm = document.querySelector('form input[type="submit"]')
+    loginForm.addEventListener('click', async function (e) {
         e.preventDefault();
         let valid = true;
         for (let input of document.querySelectorAll("form input")) {
-            // input.setCustomValidity("Erreur dans l’identifiant ou le mot de passe");
+            //input.setCustomValidity("Erreur dans l’identifiant ou le mot de passe");
             valid = valid && input.reportValidity();
             console.log("form valid", input, valid);
             if (!valid) {
