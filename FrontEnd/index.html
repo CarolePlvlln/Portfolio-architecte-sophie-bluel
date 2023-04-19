@@ -15,7 +15,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script type="module" src="./filtres_projets.js" defer></script>
-	<script type="module" src="./modale.js" defer></script>
+
 
 </head>
 
@@ -85,7 +85,7 @@
 				</div>
 				<div class="modal-container" id="modal-container">
 					<div class="overlay "></div>
-					<div class="modal">
+					<div class="modal gallery">
 						<div class="modal_header_button">
 							<button class="icon_retour" id="icon_retour"><i class="fa-solid fa-arrow-left"></i></button>
 							<button class="modal_close">X</button>
@@ -93,42 +93,43 @@
 						<div class="modal_header_title" aria-label="title_modal">
 							<h3 id="title_modal">Galerie photo</h3>
 						</div>
-						<form method="post" enctype="multipart/form-data" class="modal_body">
-							<div class="modal_gallery" id="modal_gallery"></div>
-							<div class="cadre_ajout_projet">
+						<form method="post" enctype="multipart/form-data" class="modal_body" id="modal_body">
+							<div class="modal_gallery modal_view_gallery" id="modal_gallery"></div>
+							<div class="cadre_ajout_projet modal_add_work">
 								<div class="fond_ajout_projet">
-									<i class="fa-regular fa-image"></i>
+									<div class="preview_image"></div>
+									<i class="fa-regular fa-image before_upload"></i>
 									<input type="file" id="image_projet" accept=".jpg, .png">
-									<button for="image_projet" class="btn_upload" type="button">+Ajouter une photo</button>
-									<p>jpg, png : 4mo max</p>
+									<button for="image_projet" class="btn_upload before_upload" type="button">+Ajouter une photo</button>
+									<p class="before_upload">jpg, png : 4mo max</p>
 								</div>
-								<div class="champs_ajout_projet">
-									<label for="titre_nouveau_projet">Titre</label>
-									<input type="titre_projet" name="titre_projet" id="champs_projet">
-									<label for="catégorie-select" class="choisir_categorie"
-										id="champs_projet">Catégorie</label>
-									<select name="catégorie_projet" id="categorie_projet">
-										<option value=""></option>
-										<option value="objet">objet</option>
-										<option value="appartement">appartement</option>
-										<option value="bar_restaurant">Bar & restaurant</option>
+								<form class="champs_ajout_projet" action="" method="post" enctype="multipart/form-data" >
+									<label for="titre_nouveau_projet" class="label" >Titre</label>
+									<input type="titre_projet" name="titre_projet" id="champs_projet" class="category" required>
+									<label for="catégorie-select" class="label"
+										id="champs_projet" >Catégorie</label>
+									<select name="catégorie_projet" id="categorie_projet" class="choisir_categorie" required>
+										<option value="0"></option>
+										<option value="1">objet</option>
+										<option value="2">appartement</option>
+										<option value="3">Bar & restaurant</option>
 									</select>
-								</div>
+								</form >
 							</div>
 						</form>
 
 						<div class="modal_footer">
-							<div class="btn_modal_galerie">
-								<div class="modal_btn_ajout modal_galerie">
+							<div class="btn_modal_galerie modal_view_gallery">
+								<div class="modal_btn_ajout modal_gallery">
 									<button class="btn_ajout_photo ">Ajouter une photo</button>
 									<div class="modal_btn_supprimer">
-										<button class="btn_supprimer_galerie ">Supprimer la galerie</button>
+										<button class="btn_supprimer_galerie">Supprimer la galerie</button>
 									</div>
 								</div>
 
 							</div>
-							<div class="btn_valider">
-								<button id="btn_valider_image">Valider</button>
+							<div class="btn_valider modal_add_work">
+								<button type="submit" id="btn_valider_image"  >Valider</button>
 							</div>
 						</div>
 					</div>
@@ -147,7 +148,7 @@
 				<button class="btn-filtres" data-categorie="3">Hôtels & Restaurants</button>
 				<br>
 			</div>
-			<div class="gallery">
+			<div id="gallery">
 			</div>
 		</section>
 		<section id="contact">

@@ -14,4 +14,5 @@ function logout (){
     sessionStorage.removeItem('user')
 }
 
+
 export default {save, get, isconnected, logout}

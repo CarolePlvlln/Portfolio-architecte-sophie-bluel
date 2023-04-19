@@ -48,11 +48,11 @@ import storage from "./storage.js";
                 })
                 //récupérer data utilisateur
                 .then((data) => {
-
                     if (data.error) {
                         alert("Erreur dans l’identifiant ou le mot de passe");
                     } else {
                         storage.save(data)
+                        
                         //sessionStorage.setItem('token', data.token);
                         //sessionStorage.setItem('userId', data.userId);
                         //Evite d'ouvrir une nouvelle fenetre.
