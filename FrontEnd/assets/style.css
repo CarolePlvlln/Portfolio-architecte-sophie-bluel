@@ -459,7 +459,7 @@ button:hover {
 	color: white;
 }
 
-.gallery {
+#gallery {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -467,7 +467,7 @@ button:hover {
 	grid-row-gap: 20px;
 }
 
-.gallery img {
+#gallery img {
 	width: 100%;
 
 }
@@ -531,6 +531,7 @@ footer nav ul {
 	width: 100%;
 	height: 100%;
 	display: block;
+	
 }
 
 .modal-container.active {
@@ -558,7 +559,7 @@ footer nav ul {
 .modal {
 	opacity: 0;
 	width: 40%;
-	height: 80%;
+	height: 85%;
 	padding-top: 20px;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -613,13 +614,13 @@ footer nav ul {
 .modal_footer {
 	display: flex;
 	flex-direction: column;
-	align-content: center;
 	align-items: center;
-	justify-content: center;
+	justify-self: center;
 	border-top: 1px solid #cccccc;
 	margin-top: 25px;
 	margin-bottom: 20px;
-
+	width: 20%;
+	padding: 10px 30%;
 }
 
 .modal_btn_ajout button {
@@ -631,8 +632,8 @@ footer nav ul {
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
-	margin-top: 20px;
-	margin-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .modal_btn_ajout button:hover {
@@ -646,41 +647,52 @@ footer nav ul {
 	text-align: center;
 	border-radius: 60px;
 	text-decoration: none;
-	margin-top: 20px;
-	margin-bottom: 10px;
-
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .modal_btn_supprimer button {
 	background-color: white;
 	font-size: 12px;
 	color: #B1663C;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 0px;
+	margin-bottom: 5px;
 }
 
 .modal_btn_supprimer button:hover {
 	background-color: white;
 	font-size: 12px;
 	color: #B1663C;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 0px;
+	margin-bottom: 5px;
 	text-decoration: underline;
 	border: none;
 }
 
 .modal_gallery {
 	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-column-gap: 2%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	grid-row-gap: 10px;
 }
 
-.image_icone {
-	display: grid;
-	grid-template-rows: 1fr 15px;
-	width: 100%;
+.icon_retour{
+	visibility: hidden;
+}
+
+.image_icone {	
+	width: 19%;	
+}
+
+.buttonIcon{
+	border: none;
+	visibility: hidden;
+	grid-row: 1;
+	z-index: 2;
+	position: absolute;
+	justify-self: end;
+	padding: 4px;
 }
 
 .icone {
@@ -711,18 +723,20 @@ footer nav ul {
 }
 
 .cadre_ajout_projet {
-	display: none;
 	width: 100%;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	margin-left: 9%;
+	margin-left: 0;
 }
 
 .fond_ajout_projet {
 	display: flex;
 	flex-direction: column;
+	flex-direction: column;
 	align-content: center;
 	align-items: center;
-	width: 80%;
+	width: 100%;
 	height: 190px;
 	background-color: #E8F1F6;
 
@@ -735,7 +749,7 @@ footer nav ul {
 .champs_ajout_projet {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 127%;
 	align-content: left;
 	align-items: left;
 	margin-top: 5px;
@@ -745,13 +759,12 @@ footer nav ul {
 	margin-bottom: 20px;
 }
 
-.champs_ajout_projet label {
-	margin-top: 15px;
-
+.label {
+	margin-top: 20px;
 }
 
-.champs_ajout_projet input,
-select {
+.champs_ajout_projet ,
+select, input {
 	width: 78%;
 	height: 35px;
 	margin-top: 15px;
@@ -768,6 +781,13 @@ select {
 	width: 50%;
 	height: 20%;
 	margin-top: 5%;
+}
+
+
+.fond_ajout_projet i {
+	font-size: 55px;
+	color: #B9C5CC;
+	margin-top: 10%;
 }
 
 .fond_ajout_projet button:hover {
@@ -788,19 +808,13 @@ select {
 	font-size: 11px;
 }
 
-.fond_ajout_projet i {
-	font-size: 55px;
-	color: #B9C5CC;
-	margin-top: 6%;
-}
 
 
 #btn_valider_image {
-	display: none;
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
-	background-color: #A7A7A7;
+	background-color: #1D6154;
 	margin: 2em;
 	width: 180px;
 	text-align: center;
@@ -808,6 +822,56 @@ select {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
+#btn_valider_image[disabled]{
+	background-color: #a7a7a7;
+}
+
+#btn_valider_image[disabled]:hover{
+	background-color: #a7a7a7;
+}
 
 
-.icon_retour {}
+.cadre_ajout_projet img{
+	width: 60%;
+	margin-left: 20%;
+	margin-top: 0%
+}
+
+.figure {
+	box-sizing: content-box;
+	height: 190px;
+}
+.preview_image{
+	height: 190px;
+}
+
+#selected_image{
+	padding: 0px;
+	margin: 0px;
+   }
+
+#selected_image img {
+ height: 190px;
+ width: auto;
+ padding: 0px;
+ margin: 0px;
+}
+
+.modal.gallery .modal_gallery{
+	display: flex;
+
+}
+
+.modal.work .modal_gallery{
+	display: none;
+}
+
+
+.modal.gallery .modal_add_work{
+	display: none;
+}
+
+.modal.work .modal_add_work{
+	display: flex;
+}
+
