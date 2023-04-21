@@ -685,14 +685,29 @@ footer nav ul {
 	width: 19%;	
 }
 
-.buttonIcon{
+.image_icone .onDelete {
 	border: none;
-	visibility: hidden;
+	background: transparent;
 	grid-row: 1;
 	z-index: 2;
 	position: absolute;
 	justify-self: end;
 	padding: 4px;
+	height: 6%;
+	justify-self: end;
+}
+
+.image_icone .onDelete:hover {
+	border: none;
+	background: transparent;
+	color: transparent;
+	grid-row: 1;
+	z-index: 2;
+	position: absolute;
+	justify-self: end;
+	padding: 4px;
+	height: 6%;
+	justify-self: end;
 }
 
 .icone {
@@ -822,25 +837,19 @@ select, input {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
-#btn_valider_image[disabled]{
-	background-color: #a7a7a7;
-}
 
-#btn_valider_image[disabled]:hover{
-	background-color: #a7a7a7;
-}
 
 
 .cadre_ajout_projet img{
-	width: 60%;
-	margin-left: 20%;
-	margin-top: 0%
-}
-
-.figure {
-	box-sizing: content-box;
 	height: 190px;
 }
+
+#figure {
+	box-sizing:content-box;
+	height: 190px;
+	margin: 0px;
+}
+
 .preview_image{
 	height: 190px;
 }
@@ -848,7 +857,7 @@ select, input {
 #selected_image{
 	padding: 0px;
 	margin: 0px;
-   }
+}
 
 #selected_image img {
  height: 190px;
