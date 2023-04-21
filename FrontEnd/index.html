@@ -93,17 +93,17 @@
 						<div class="modal_header_title" aria-label="title_modal">
 							<h3 id="title_modal">Galerie photo</h3>
 						</div>
-						<form method="post" enctype="multipart/form-data" class="modal_body" id="modal_body">
+						<div  class="modal_body" id="modal_body">
 							<div class="modal_gallery modal_view_gallery" id="modal_gallery"></div>
 							<div class="cadre_ajout_projet modal_add_work">
 								<div class="fond_ajout_projet">
 									<div class="preview_image"></div>
 									<i class="fa-regular fa-image before_upload"></i>
-									<input type="file" id="image_projet" accept=".jpg, .png">
-									<button for="image_projet" class="btn_upload before_upload" type="button">+Ajouter une photo</button>
+									<input type="file" id="image_projet" class="empty_file" accept=".jpg, .png">
+									<button for="image_projet" class="btn_upload before_upload empty_file" type="button">+Ajouter une photo</button>
 									<p class="before_upload">jpg, png : 4mo max</p>
 								</div>
-								<form class="champs_ajout_projet" action="" method="post" enctype="multipart/form-data" >
+								<div class="champs_ajout_projet">
 									<label for="titre_nouveau_projet" class="label" >Titre</label>
 									<input type="titre_projet" name="titre_projet" id="champs_projet" class="category" required>
 									<label for="catégorie-select" class="label"
@@ -114,9 +114,9 @@
 										<option value="2">appartement</option>
 										<option value="3">Bar & restaurant</option>
 									</select>
-								</form >
+								</div >
 							</div>
-						</form>
+						</div>
 
 						<div class="modal_footer">
 							<div class="btn_modal_galerie modal_view_gallery">
@@ -129,7 +129,7 @@
 
 							</div>
 							<div class="btn_valider modal_add_work">
-								<button type="submit" id="btn_valider_image"  >Valider</button>
+								<button id="btn_valider_image" >Valider</button>
 							</div>
 						</div>
 					</div>
