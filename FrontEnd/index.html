@@ -95,20 +95,20 @@
 						</div>
 						<div  class="modal_body" id="modal_body">
 							<div class="modal_gallery modal_view_gallery" id="modal_gallery"></div>
-							<div class="cadre_ajout_projet modal_add_work">
+							<div class="cadre_ajout_projet modal_add_work" id="form">
 								<div class="fond_ajout_projet">
 									<div class="preview_image"></div>
 									<i class="fa-regular fa-image before_upload"></i>
-									<input type="file" id="image_projet" class="empty_file" accept=".jpg, .png">
+									<input type="file" id="image_projet" class="empty_file validity" accept=".jpg, .png">
 									<button for="image_projet" class="btn_upload before_upload empty_file" type="button">+Ajouter une photo</button>
 									<p class="before_upload">jpg, png : 4mo max</p>
 								</div>
 								<div class="champs_ajout_projet">
-									<label for="titre_nouveau_projet" class="label" >Titre</label>
-									<input type="titre_projet" name="titre_projet" id="champs_projet" class="category" required>
+									<label for="titre_nouveau_projet" class="label titre_ajout_projet" >Titre</label>
+									<input type="titre_projet" name="titre_projet" id="champs_projet" class="category validity" required>
 									<label for="catégorie-select" class="label"
 										id="champs_projet" >Catégorie</label>
-									<select name="catégorie_projet" id="categorie_projet" class="choisir_categorie" required>
+									<select name="catégorie_projet" id="categorie_projet" class="choisir_categorie validity" required>
 										<option value="0"></option>
 										<option value="1">objet</option>
 										<option value="2">appartement</option>
@@ -129,7 +129,7 @@
 
 							</div>
 							<div class="btn_valider modal_add_work">
-								<button id="btn_valider_image" >Valider</button>
+								<button id="btn_valider_image" disabled>Valider</button>
 							</div>
 						</div>
 					</div>

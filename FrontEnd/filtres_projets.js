@@ -33,7 +33,6 @@ async function genererProjets() {
         });
 
     }
-
     //ajouter bouton pour ouvir la modale et faire apparaître les projets.
     const bntModifier = document.querySelector("#btn_modifier_gallery");
 
@@ -71,10 +70,9 @@ function afficherProjets(projets) {
         divGallery.appendChild(filtresProjetsElement);
         filtresProjetsElement.appendChild(imageUrlElement);
         filtresProjetsElement.appendChild(titleElement);
-
     }
-
 }
+
 
 // fonction pour afficher la galerie et les icones dans la modale.
 function afficherGalleryModal(projets) {
@@ -93,8 +91,7 @@ function afficherGalleryModal(projets) {
         </div>`;
     }
     prepareDelete();
-};
-
+}
 
 
 
@@ -110,28 +107,37 @@ function afficherAjoutProjet() {
     modalBody.classList.remove('gallery');
     modalBody.classList.add('work');
     document.querySelector(".icon_retour").style.visibility = "visible";
-    resetAjoutProjet()
+    resetAjoutProjet();
+
 }
+
 
 //effacer les champs ajout projet
 function resetAjoutProjet() {
+    const beforeUpload = document.querySelectorAll(".before_upload");
+    for (const element of beforeUpload) {
+        element.style.display = "block"
+    };
     document.querySelector('#champs_projet').value = "";
     document.querySelector('#categorie_projet').value = "0";
-    document.querySelectorAll('.empty_file').value = "";
-    document.querySelector('.btn_upload').value = "";
+    document.getElementById('figure').style.display = "none";
 }
+
 
 //Bouton pour fermer la modale.
 const btnModalClose = document.querySelector(".modal_close");
 btnModalClose.addEventListener("click", function () {
+    resetAjoutProjet();
     modalContainer.classList.toggle("active");
 })
+
 
 //Bouton "ajouter une photo" : nouvelle fenêtre.
 const btnAddWork = document.querySelector(".btn_ajout_photo");
 btnAddWork.addEventListener("click", function (e) {
     return afficherAjoutProjet();
 });
+
 
 //Bouton retour arrière
 const btnRetour = document.querySelector("#icon_retour");
@@ -140,16 +146,16 @@ btnRetour.addEventListener("click", function () {
     modalBody.classList.add('gallery');
     document.querySelector(".icon_retour").style.visibility = "hidden";
     resetAjoutProjet();
-
 });
+
 
 //Bouton pour ajouter un projet.
 const inputImageProjet = document.querySelector("#image_projet")
 const btonUpload = document.querySelector(".btn_upload");
 btonUpload.addEventListener("click", function () {
     inputImageProjet.click();
-
 })
+
 
 //Télécharger une photo.
 const inputUploadWork = document.querySelector("#image_projet");
@@ -161,14 +167,11 @@ function previewFile() {
     const fileReader = new FileReader();
     //methode "readAsDataURL" pour lire fichier dans "file"
     fileReader.readAsDataURL(file);
-    //fileReader.onloadend = function () {
-    //    console.log(fileReader.result);
-    //}
-    //fileReader.readAsBinaryString(file);
     //addEvenListener pour afficher l'image
     fileReader.addEventListener('load', (event) =>
         displayImage(event, file));
 }
+
 
 //fonction pour prévisualiser l'image.
 function displayImage(event) {
@@ -188,16 +191,84 @@ function displayImage(event) {
     //figureElement.appendChild(figcaptionElement);
 
     document.body.querySelector(".preview_image").append(figureElement);
+    //changer couleur bouton valider 
+ 
+document.getElementsByClassName("champs_projet").addEventListener('keyup',function validForm (e){
+    e.preventDefault();
+    const champsTitre = document.querySelector("#champs_projet");
+    const champsImg = document.querySelector('#image_projet');
+    const category = document.getElementById('categorie_projet');
+    const btnValiderImage = document.getElementById('btn_valider_image');
+      if ((champsTitre.value !== null) && (category.value !== "0") && (champsImg.files[0] !== "")) {
+        btnValiderImage.removeAttribute('disabled');
+        btnValiderImage.style.backgroundColor = "#1D6154";
+    }
+        else {
+            btnValiderImage.disabled = true;
+        } })
+
 }
 
-//changer couleur bouton valider 
-// document.getElementById("#champs_projet").addEventListener('keyup', function() {
-//      if (this.value.length > 0 & (document.querySelector(".img") != ""))   {
-//         document.getElementById('#btn_valider_image').style.backgroundColor="#1D6154";
-// } else {
-//    document.getElementById('#btn_valider_image').style.backgroundColor="#a7a7a7";
-//  }
-//  });
+
+
+
+// const champsTitre = document.querySelector("#champs_projet");
+// function validTitle() {
+//     if (champsTitre.value !== "") {
+//         champsTitre.classList.remove("is-invalid");
+//         champsTitre.classList.add("valid");
+//     } else {
+//         champsTitre.classList.add("is-valid");
+//         champsTitre.classList.remove("valid");
+//     }
+// }
+// champsTitre.addEventListener('keydown', validTitle);
+
+// const champsImg = document.querySelector('#image_projet');
+// function validImg() {
+//     if (champsImg.files[0] !== "") {
+//         champsImg.classList.remove("is-invalid");
+//         champsImg.classList.add("valid");
+//     } else {
+//         champsImg.classList.add("is-valid");
+//         champsImg.classList.remove("valid");
+//     }
+// }
+// champsImg.addEventListener('keydown', validImg);
+
+// const category = document.getElementById('categorie_projet');
+// function validCategory() {
+//     if (category.options[category.selectedIndex].value !== "0") {
+//         alert("veuillez sélectionner une catégorie");
+//         category.classList.remove("is-invalid");
+//         category.classList.add("valid");
+//     } else {
+//         category.classList.add("is-valid");
+//         category.classList.remove("valid");
+//     }
+// }
+//  category.addEventListener('keydown', validCategory);
+
+
+//  var inputFields = document.querySelectorAll('.validity')
+//  const btnValiderImage = document.getElementById('btn_valider_image');
+//  function changeColor(){
+//     var list = [];
+//     for (var i = 0; i < inputFields.length; i++) {
+//         var inputValue = inputFields[i].value;
+//         list.push(inputValue);
+//     }
+//     if (!(list.includes('')) && !(champsTitre.classList.contains("is-invalid")) && !(champsImg.classList.contains("is-invalid")) && !(category.classList.contains("is-invalid"))) {
+//         btnValiderImage.removeAttribute('disabled');
+//         btnValiderImage.style.backgroundColor = "#1D6154"
+//     } else{
+//         btnValiderImage.disabled = true;
+//     }
+//   }
+
+//   for (var i = 0; i < inputFields.length; i++) {
+//     inputFields[i].addEventListener('.validity', changeColor);}
+
 
 
 //Envoyer nouveau projet
@@ -205,7 +276,6 @@ const formSendWork = document.querySelector('#btn_valider_image');
 
 formSendWork.addEventListener('click', async function (e) {
     e.preventDefault();
-
     const formData = new FormData();
     const imgUrl = document.querySelector('#image_projet').files[0];
     const title = document.getElementById('champs_projet').value;
@@ -249,9 +319,6 @@ formSendWork.addEventListener('click', async function (e) {
                 })
         };
     }
-    //title.innerHTML = "";
-    //categoryValue = "0";
-    //imgUrl.innerHTML = "";
 })
 
 
@@ -259,30 +326,27 @@ formSendWork.addEventListener('click', async function (e) {
 //Supprimer un projet
 function prepareDelete() {
     const deleteBtn = document.querySelectorAll(".onDelete");
-    deleteBtn.forEach(btn=>{
+    deleteBtn.forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
             //récuperer le parent
-const parent = e.target.closest(".image_icone");
-const id = parent.dataset.id;
+            const parent = e.target.closest(".image_icone");
+            const id = parent.dataset.id;
 
-                fetch(`http://localhost:5678/api/works/${id}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        'Authorization': "Bearer " + token.token
-                    }
-                })
-                .then(result =>{
+            fetch(`http://localhost:5678/api/works/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + token.token
+                }
+            }) //retirer l'élément du DOM sans tout recharger
+                .then(result => {
                     parent.remove()
                 })
-                //retirer l'élément du DOM sans tout recharger
-                
-                //afficherGalleryModal(projets)
-           
-    });
+
+        });
     })
-    
+
 }
 
 const token = storage.get();
