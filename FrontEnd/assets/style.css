@@ -685,32 +685,9 @@ footer nav ul {
 	width: 19%;	
 }
 
-.image_icone .onDelete {
-	border: none;
-	background: transparent;
-	grid-row: 1;
-	z-index: 2;
-	position: absolute;
-	justify-self: end;
-	padding: 4px;
-	height: 6%;
-	justify-self: end;
-}
-
-.image_icone .onDelete:hover {
-	border: none;
-	background: transparent;
-	color: transparent;
-	grid-row: 1;
-	z-index: 2;
-	position: absolute;
-	justify-self: end;
-	padding: 4px;
-	height: 6%;
-	justify-self: end;
-}
-
 .icone {
+	border: none;
+	background: transparent;
 	grid-row: 1;
 	z-index: 2;
 	position: absolute;
@@ -719,8 +696,17 @@ footer nav ul {
 }
 
 .icone:hover {
+	border: none;
+	background: transparent;
+	color: transparent;
+	grid-row: 1;
+	z-index: 2;
+	position: absolute;
+	justify-self: end;
+	padding: 4px;
 	cursor: pointer;
 }
+
 
 .modal_gallery img {
 	grid-row: 1;
@@ -754,7 +740,6 @@ footer nav ul {
 	width: 100%;
 	height: 190px;
 	background-color: #E8F1F6;
-
 }
 
 .btn_ajout_projet {
@@ -765,9 +750,11 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 	width: 127%;
-	align-content: left;
-	align-items: left;
-	margin-top: 5px;
+}
+
+.titre_ajout_projet{
+background-color: none;
+box-shadow: none;
 }
 
 #titre_projet {
@@ -778,7 +765,7 @@ footer nav ul {
 	margin-top: 20px;
 }
 
-.champs_ajout_projet ,
+.champs_ajout_projet 
 select, input {
 	width: 78%;
 	height: 35px;
@@ -829,7 +816,7 @@ select, input {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
-	background-color: #1D6154;
+	background-color: #A7A7A7;
 	margin: 2em;
 	width: 180px;
 	text-align: center;
@@ -837,7 +824,6 @@ select, input {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
-
 
 
 .cadre_ajout_projet img{
@@ -852,6 +838,7 @@ select, input {
 
 .preview_image{
 	height: 190px;
+
 }
 
 #selected_image{
