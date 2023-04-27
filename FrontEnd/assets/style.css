@@ -393,7 +393,7 @@ nav a:hover {
 
 .en_tete_portfolio h2 {
 	margin-top: 0px;
-	margin-bottom: 0px;
+	margin-bottom: 60px;
 }
 
 .modif_projets {
@@ -435,10 +435,15 @@ nav a:hover {
 .filtres-projets {
 	display: flex;
 	flex-direction: row;
-	margin-bottom: 4%;
-	margin-top: 5%;
+	margin-bottom: 50px;
 	justify-content: center;
 	gap: 0.5%;
+}
+
+#by_default {
+	background-color: #1D6154;
+	cursor: pointer;
+	color: white;
 }
 
 button {
@@ -454,6 +459,12 @@ button {
 }
 
 button:hover {
+	background-color: #1D6154;
+	cursor: pointer;
+	color: white;
+}
+
+.btn-filtres:focus {
 	background-color: #1D6154;
 	cursor: pointer;
 	color: white;

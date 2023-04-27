@@ -15,16 +15,24 @@ async function genererProjets() {
 
     //Créations des filtres pour les boutons. On récupère tous les boutons de ".btn-filtres" grace à "querySelectorAll".
     const boutonsFiltres = document.querySelectorAll(".btn-filtres");
+    let btnByDefault = document.querySelector("#by_default");
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        document.getElementById("by_default").onfocus();
+    });
+    
     //Pour les boutons de "boutonsFiltres" on ajoute un "addEventListener" avec un arg1 "click" et arg2 function(e)
     for (let btn of boutonsFiltres) {
         btn.addEventListener("click", function (e) {
             //On déclare categoryId en récupérant le "dataset.catégorie" (ref.HTML)
+            
             let categoryId = e.target.dataset.categorie
             let projetsFiltres = projets;
             //Si la catégorie est différente de 0 (bouton tous) alors on applique la fonction suivante.
             if (categoryId != 0) {
+                removeFocus();
                 projetsFiltres = projets.filter(function (projet) {
                     return projet.categoryId == categoryId;
+                    
                 });
             }
             //On appelle la fonction pour afficher les résultats.
@@ -333,15 +341,15 @@ function prepareDelete() {
 const token = storage.get();
 
 //Faire apparaître/disparaître les éléments quand l'utilisateur est connecté ou non.
-if (storage.isconnected()) {
-    const loginLogout = document.querySelector(".login_logout");
+ const loginLogout = document.querySelector(".login_logout");
+ const btnModifier = document.querySelector(`#btn_modifier`);
+ const filtres = document.querySelector ('.filtres-projets');
+ if (storage.isconnected()) {
     loginLogout.innerText = "lougout";
-    const btnModifier = document.querySelector(`#btn_modifier`);
     btnModifier.style.display = "visible";
-} else {
-    const loginLogout = document.querySelector(".login_logout");
+    filtres.style.display = "none";
+} else {  
     loginLogout.innerText = "login";
-    const btnModifier = document.querySelector("#btn_modifier");
     btnModifier.style.display = "none";
     const modifTextePrésentation = document.querySelector(".modif_texte_présentation");
     modifTextePrésentation.style.display = "none";
@@ -349,6 +357,6 @@ if (storage.isconnected()) {
     modifProfil.style.display = "none";
     const modifProjets = document.querySelector(".modif_projets");
     modifProjets.style.display = "none";
+    filtres.style.display = "block";
 }
-
 
