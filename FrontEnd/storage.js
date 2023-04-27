@@ -6,6 +6,7 @@ function get (){
     return JSON.parse(sessionStorage.getItem('user'))
 }
 
+
 function isconnected (){
     return sessionStorage.getItem('user') != null
 }

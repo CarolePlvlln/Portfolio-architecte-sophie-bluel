@@ -41,6 +41,7 @@ async function genererProjets() {
         modalContainer.classList.toggle("active");
         modalBody.classList.add('gallery');
         modalBody.classList.remove('work');
+
     })
 
 }
@@ -108,7 +109,6 @@ function afficherAjoutProjet() {
     modalBody.classList.add('work');
     document.querySelector(".icon_retour").style.visibility = "visible";
     resetAjoutProjet();
-
 }
 
 
@@ -117,10 +117,14 @@ function resetAjoutProjet() {
     const beforeUpload = document.querySelectorAll(".before_upload");
     for (const element of beforeUpload) {
         element.style.display = "block"
-    };
+    }
     document.querySelector('#champs_projet').value = "";
     document.querySelector('#categorie_projet').value = "0";
-    document.getElementById('figure').style.display = "none";
+    const figure= document.getElementById('figure');
+    if (figure){
+        figure.style.display="none";
+    }
+    // document.getElementById('figure').style.display = "none";
 }
 
 
@@ -130,13 +134,64 @@ btnModalClose.addEventListener("click", function () {
     resetAjoutProjet();
     modalContainer.classList.toggle("active");
 })
+const overlayCloseModal = document.querySelector(".overlay");
+overlayCloseModal.addEventListener("click", function () {
+    resetAjoutProjet();
+    modalContainer.classList.toggle("active");
+})
 
 
 //Bouton "ajouter une photo" : nouvelle fenêtre.
 const btnAddWork = document.querySelector(".btn_ajout_photo");
 btnAddWork.addEventListener("click", function (e) {
-    return afficherAjoutProjet();
+    resetAjoutProjet();
+    afficherAjoutProjet();
+})
+
+
+
+const champsTitre = document.querySelector("#champs_projet");
+const category = document.getElementById('categorie_projet');
+let isTitleValid = false;
+let isCategoryValid = false;
+
+champsTitre.addEventListener('keyup', function () {
+    if (champsTitre.value == "") {
+        alert("Veuillez ajouter un titre.")
+        isTitleValid = false;
+    } else {
+        isTitleValid = true
+    }
+    checkFormValidity();
+
+})
+category.addEventListener('change', function () {
+    if (category.value == "0") {
+        alert("Veuillez choisir une catégorie.")
+        isCategoryValid = false;
+    } if (category.value != "0") {
+        isCategoryValid = true;
+    }
+    checkFormValidity();
 });
+
+
+
+function checkFormValidity() {
+    const img = document.getElementById("image")
+    let imgSrc="";
+    if (img){
+        imgSrc=img.getAttribute("src");
+    }
+    //;
+    if ((isTitleValid) && (isCategoryValid) && (imgSrc !== "")) {
+        formSendWork.removeAttribute('disabled');
+        formSendWork.style.backgroundColor = "#1D6154";
+    }else{
+        formSendWork.setAttribute('disabled',"");
+        formSendWork.style.backgroundColor = "#A7A7A7";
+    }
+}
 
 
 //Bouton retour arrière
@@ -189,92 +244,15 @@ function displayImage(event) {
     };
     figureElement.appendChild(imageElement);
     //figureElement.appendChild(figcaptionElement);
-
     document.body.querySelector(".preview_image").append(figureElement);
-    //changer couleur bouton valider 
- 
-document.getElementsByClassName("champs_projet").addEventListener('keyup',function validForm (e){
-    e.preventDefault();
-    const champsTitre = document.querySelector("#champs_projet");
-    const champsImg = document.querySelector('#image_projet');
-    const category = document.getElementById('categorie_projet');
-    const btnValiderImage = document.getElementById('btn_valider_image');
-      if ((champsTitre.value !== null) && (category.value !== "0") && (champsImg.files[0] !== "")) {
-        btnValiderImage.removeAttribute('disabled');
-        btnValiderImage.style.backgroundColor = "#1D6154";
-    }
-        else {
-            btnValiderImage.disabled = true;
-        } })
-
+    checkFormValidity();
 }
-
-
-
-
-// const champsTitre = document.querySelector("#champs_projet");
-// function validTitle() {
-//     if (champsTitre.value !== "") {
-//         champsTitre.classList.remove("is-invalid");
-//         champsTitre.classList.add("valid");
-//     } else {
-//         champsTitre.classList.add("is-valid");
-//         champsTitre.classList.remove("valid");
-//     }
-// }
-// champsTitre.addEventListener('keydown', validTitle);
-
-// const champsImg = document.querySelector('#image_projet');
-// function validImg() {
-//     if (champsImg.files[0] !== "") {
-//         champsImg.classList.remove("is-invalid");
-//         champsImg.classList.add("valid");
-//     } else {
-//         champsImg.classList.add("is-valid");
-//         champsImg.classList.remove("valid");
-//     }
-// }
-// champsImg.addEventListener('keydown', validImg);
-
-// const category = document.getElementById('categorie_projet');
-// function validCategory() {
-//     if (category.options[category.selectedIndex].value !== "0") {
-//         alert("veuillez sélectionner une catégorie");
-//         category.classList.remove("is-invalid");
-//         category.classList.add("valid");
-//     } else {
-//         category.classList.add("is-valid");
-//         category.classList.remove("valid");
-//     }
-// }
-//  category.addEventListener('keydown', validCategory);
-
-
-//  var inputFields = document.querySelectorAll('.validity')
-//  const btnValiderImage = document.getElementById('btn_valider_image');
-//  function changeColor(){
-//     var list = [];
-//     for (var i = 0; i < inputFields.length; i++) {
-//         var inputValue = inputFields[i].value;
-//         list.push(inputValue);
-//     }
-//     if (!(list.includes('')) && !(champsTitre.classList.contains("is-invalid")) && !(champsImg.classList.contains("is-invalid")) && !(category.classList.contains("is-invalid"))) {
-//         btnValiderImage.removeAttribute('disabled');
-//         btnValiderImage.style.backgroundColor = "#1D6154"
-//     } else{
-//         btnValiderImage.disabled = true;
-//     }
-//   }
-
-//   for (var i = 0; i < inputFields.length; i++) {
-//     inputFields[i].addEventListener('.validity', changeColor);}
-
 
 
 //Envoyer nouveau projet
 const formSendWork = document.querySelector('#btn_valider_image');
 
-formSendWork.addEventListener('click', async function (e) {
+formSendWork.addEventListener('click', function (e) {
     e.preventDefault();
     const formData = new FormData();
     const imgUrl = document.querySelector('#image_projet').files[0];
@@ -293,7 +271,7 @@ formSendWork.addEventListener('click', async function (e) {
     } else {
 
         if (storage.isconnected() == false) {
-            return (Error);
+            throw new Error("Utilisateur non connecté");
         }
         else {
             const token = storage.get();
@@ -309,13 +287,12 @@ formSendWork.addEventListener('click', async function (e) {
                 .then(function (response) {
                     return response.json()
                 })
-
-                .then(function (success) {
-                    console.log(success)
+                .then(success => {
+                    console.log(success + "Projet ajouté")
                 })
 
                 .catch((err) => {
-                    console.error("Erreur");
+                    console.error(err + "Erreur");
                 })
         };
     }
@@ -343,13 +320,18 @@ function prepareDelete() {
                 .then(result => {
                     parent.remove()
                 })
+                .then(success => {
+                    console.log(success + "Projet ajouté")
+                })
 
         });
     })
 
 }
 
+
 const token = storage.get();
+
 //Faire apparaître/disparaître les éléments quand l'utilisateur est connecté ou non.
 if (storage.isconnected()) {
     const loginLogout = document.querySelector(".login_logout");

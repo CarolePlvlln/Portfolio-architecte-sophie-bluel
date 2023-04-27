@@ -15,7 +15,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script type="module" src="./filtres_projets.js" defer></script>
-
+	
 
 </head>
 
@@ -95,13 +95,15 @@
 						</div>
 						<div  class="modal_body" id="modal_body">
 							<div class="modal_gallery modal_view_gallery" id="modal_gallery"></div>
-							<div class="cadre_ajout_projet modal_add_work" id="form">
+							<form class="form modal_add_work form" action="" method="post" id="form">
 								<div class="fond_ajout_projet">
 									<div class="preview_image"></div>
+									<div class="before_img_uploaded">
 									<i class="fa-regular fa-image before_upload"></i>
-									<input type="file" id="image_projet" class="empty_file validity" accept=".jpg, .png">
+									<input type="file" id="image_projet" class="empty_file validity" accept=".jpg, .png" name="file" required>
 									<button for="image_projet" class="btn_upload before_upload empty_file" type="button">+Ajouter une photo</button>
 									<p class="before_upload">jpg, png : 4mo max</p>
+									</div>
 								</div>
 								<div class="champs_ajout_projet">
 									<label for="titre_nouveau_projet" class="label titre_ajout_projet" >Titre</label>
@@ -115,7 +117,7 @@
 										<option value="3">Bar & restaurant</option>
 									</select>
 								</div >
-							</div>
+							</form>
 						</div>
 
 						<div class="modal_footer">
@@ -129,7 +131,7 @@
 
 							</div>
 							<div class="btn_valider modal_add_work">
-								<button id="btn_valider_image" disabled>Valider</button>
+								<button id="btn_valider_image" type='submit' disabled>Valider</button>
 							</div>
 						</div>
 					</div>
