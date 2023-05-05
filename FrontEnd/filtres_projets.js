@@ -20,7 +20,6 @@ async function genererProjets() {
     for (let btn of boutonsFiltres) {
         btn.addEventListener("click", function (e) {
             //On déclare categoryId en récupérant le "dataset.catégorie" (ref.HTML)
-
             let categoryId = e.target.dataset.categorie
             let projetsFiltres = projets;
             //Si la catégorie est différente de 0 (bouton tous) alors on applique la fonction suivante.
@@ -29,11 +28,8 @@ async function genererProjets() {
                     return projet.categoryId == categoryId;
                 });   
             }
-
-            //     }
             //On appelle la fonction pour afficher les résultats.
             afficherProjets(projetsFiltres);
-
         });
     
 
@@ -70,6 +66,7 @@ function afficherProjets(projets) {
         const filtresProjetsElement = document.createElement("filtres-projets")
         const imageUrlElement = document.createElement("img");
         imageUrlElement.src = id.imageUrl;
+        imageUrlElement.alt= id.title;
         const titleElement = document.createElement("p");
         titleElement.innerText = id.title;
 
@@ -90,9 +87,9 @@ function afficherGalleryModal(projets) {
         //const sort_num = $('input[type="hidden"]:last').attr('id') + counter ;
         // counter ++;
         modalGallery.innerHTML += `
-        <div class= "image_icone modal_view_gallery" data-id="${id.id}">
+        <div class="image_icone modal_view_gallery" data-id="${id.id}">
         <i class="icone onDelete fa-solid fa-trash-can" ></i>
-        <image classe = "img" src="${id.imageUrl}">
+        <img class="img" src="${id.imageUrl}" alt="${id.title}">
         <button class="btn_editer">éditer</button>
         </div>`;
     }
@@ -241,6 +238,7 @@ function displayImage(event) {
     const imageElement = document.createElement("img");
     imageElement.id = "image";
     imageElement.src = event.target.result;
+    imageElement.alt = "apperçu";
 
     //effacer les boutons pour uploader
     const beforeUpload = document.querySelectorAll(".before_upload");
