@@ -21,13 +21,11 @@
 
 <body>
 	<header>
-		<div class="en_tete_mode_edition" id="btn_modifier">
-			<i class="fa-solid fa-pen-to-square" id="modif_photo_profil">
-				<a href="#">
-					<p>modifier</p>
-				</a>
+		<div class="en_tete_mode_edition btn_modifier">
+			<i class="fa-solid fa-pen-to-square" id="modif_en_tete">
+				<button id="btn_modifier_en_tete">modifier</button>
 			</i>
-			<button class="btn_modif_mode" href="#">publier les changements</button>
+			<button class="btn_modif_mode">publier les changements</button>
 			<br>
 		</div>
 		<div class="en_tete_principale">
@@ -46,29 +44,25 @@
 		<section id="introduction">
 			<figure class="photo_icone_modif">
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<div class="modif_profil" id="btn_modifier">
-					<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-					<button id="btn_modifier">
-						<p>modifier</p>
-					</button>
+				<div class="modif_profil" >
+					<i class="fa-solid fa-pen-to-square modif_photo_profil"></i>
+					<button class="btn_modifier">modifier</button>
 				</div>
 			</figure>
 			<article>
-				<div class="modif_texte_présentation" id="btn_modifier">
-					<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-					<button id="btn_modifier">
-						<p>modifier</p>
-					</button>
+				<div class="modif_texte_présentation">
+					<i class="fa-solid fa-pen-to-square modif_photo_profil"></i>
+					<button class="btn_modifier">modifier</button>
 				</div>
 				<div>
 					<h2>Designer d'espace</h2>
-					<br>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
-					livraison finale du chantier.</br>
-					<br>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et
+					<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
+					livraison finale du chantier.<br>
+					Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et
 					les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-					chantier sera assuré dans le souci du détail, le respect du planning et du budget.</br>
-					<br>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
-					décorateur(trice)</br>
+					chantier sera assuré dans le souci du détail, le respect du planning et du budget.<br>
+					En cas de besoin, une équipe pluridisciplinaire peut-être constituée de : architecte DPLG,
+					décorateur(trice)</P>
 				</div>
 			</article>
 		</section>
@@ -76,11 +70,9 @@
 			<div class="portfolio">
 				<div class="en_tete_portfolio">
 					<h2>Mes Projets</h2>
-					<div class="modif_projets" id="btn_modifier">
+					<div class="modif_projets btn_modifier">
 						<i class="fa-solid fa-pen-to-square" id="modif_photo_profil"></i>
-						<button class="modal-btn modal-trigger" id="btn_modifier_gallery">
-							<p>modifier</p>
-						</button>
+						<button class="modal-btn modal-trigger" id="btn_modifier_gallery">modifier</button>
 					</div>
 				</div>
 				<div class="modal-container" id="modal-container">
@@ -101,17 +93,16 @@
 									<div class="before_img_uploaded">
 									<i class="fa-regular fa-image before_upload"></i>
 									<input type="file" id="image_projet" class="empty_file validity" accept=".jpg, .png" name="file" required>
-									<button for="image_projet" class="btn_upload before_upload empty_file" type="button">+Ajouter une photo</button>
+									<button class="btn_upload before_upload empty_file" type="button">+Ajouter une photo</button>
 									<p class="before_upload">jpg, png : 4mo max</p>
 									</div>
 								</div>
 								<div class="champs_ajout_projet">
-									<label for="titre_nouveau_projet" class="label titre_ajout_projet" >Titre</label>
-									<input type="titre_projet" name="titre_projet" id="champs_projet" class="category validity" required>
-									<label for="catégorie-select" class="label"
-										id="champs_projet" >Catégorie</label>
-									<select name="catégorie_projet" id="categorie_projet" class="choisir_categorie validity" required>
-										<option value="0"></option>
+									<label for="champs_projet" class="label titre_ajout_projet" >Titre</label>
+									<input type="text" name="titre_projet" id="champs_projet" class="category validity" required>
+									<label for="categorie_projet" class="label">Catégorie</label>
+									<select name="catégorie_projet" id="categorie_projet" class="choisir_categorie validity">
+										<option value="0" label="0"> </option>
 										<option value="1">objet</option>
 										<option value="2">appartement</option>
 										<option value="3">Bar & restaurant</option>
@@ -141,7 +132,7 @@
 			</div>
 			<div class="filtres-projets">
 				<!-- Création d'une même class pour les boutons et d'un dataset "data-categorie" pour chaque bouton-->
-				<button class="btn-filtres" data-categorie="0" id="by_default" onfocus>Tous</button>
+				<button class="btn-filtres" data-categorie="0" id="by_default"autofocus>Tous</button>
 				<br>
 				<button class="btn-filtres" data-categorie="1">Objets</button>
 				<br>

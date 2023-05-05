@@ -15,30 +15,27 @@ async function genererProjets() {
 
     //Créations des filtres pour les boutons. On récupère tous les boutons de ".btn-filtres" grace à "querySelectorAll".
     const boutonsFiltres = document.querySelectorAll(".btn-filtres");
-    let btnByDefault = document.querySelector("#by_default");
-    document.addEventListener("DOMContentLoaded", function(event) { 
-        document.getElementById("by_default").onfocus();
-    });
-    
+
     //Pour les boutons de "boutonsFiltres" on ajoute un "addEventListener" avec un arg1 "click" et arg2 function(e)
     for (let btn of boutonsFiltres) {
         btn.addEventListener("click", function (e) {
             //On déclare categoryId en récupérant le "dataset.catégorie" (ref.HTML)
-            
+
             let categoryId = e.target.dataset.categorie
             let projetsFiltres = projets;
             //Si la catégorie est différente de 0 (bouton tous) alors on applique la fonction suivante.
             if (categoryId != 0) {
-                removeFocus();
                 projetsFiltres = projets.filter(function (projet) {
                     return projet.categoryId == categoryId;
-                    
-                });
+                });   
             }
+
+            //     }
             //On appelle la fonction pour afficher les résultats.
             afficherProjets(projetsFiltres);
 
         });
+    
 
     }
     //ajouter bouton pour ouvir la modale et faire apparaître les projets.
@@ -128,9 +125,9 @@ function resetAjoutProjet() {
     }
     document.querySelector('#champs_projet').value = "";
     document.querySelector('#categorie_projet').value = "0";
-    const figure= document.getElementById('figure');
-    if (figure){
-        figure.style.display="none";
+    const figure = document.getElementById('figure');
+    if (figure) {
+        figure.style.display = "none";
     }
     // document.getElementById('figure').style.display = "none";
 }
@@ -187,16 +184,16 @@ category.addEventListener('change', function () {
 
 function checkFormValidity() {
     const img = document.getElementById("image")
-    let imgSrc="";
-    if (img){
-        imgSrc=img.getAttribute("src");
+    let imgSrc = "";
+    if (img) {
+        imgSrc = img.getAttribute("src");
     }
     //;
     if ((isTitleValid) && (isCategoryValid) && (imgSrc !== "")) {
         formSendWork.removeAttribute('disabled');
         formSendWork.style.backgroundColor = "#1D6154";
-    }else{
-        formSendWork.setAttribute('disabled',"");
+    } else {
+        formSendWork.setAttribute('disabled', "");
         formSendWork.style.backgroundColor = "#A7A7A7";
     }
 }
@@ -341,14 +338,15 @@ function prepareDelete() {
 const token = storage.get();
 
 //Faire apparaître/disparaître les éléments quand l'utilisateur est connecté ou non.
- const loginLogout = document.querySelector(".login_logout");
- const btnModifier = document.querySelector(`#btn_modifier`);
- const filtres = document.querySelector ('.filtres-projets');
- if (storage.isconnected()) {
-    loginLogout.innerText = "lougout";
+const loginLogout = document.querySelector(".login_logout");
+const btnModifier = document.querySelector(`.btn_modifier`);
+const filtres = document.querySelector('.filtres-projets');
+if (storage.isconnected()) {
+    loginLogout.innerText = "logout";
     btnModifier.style.display = "visible";
     filtres.style.display = "none";
-} else {  
+} else {
+    (storage.logout())
     loginLogout.innerText = "login";
     btnModifier.style.display = "none";
     const modifTextePrésentation = document.querySelector(".modif_texte_présentation");
@@ -357,6 +355,11 @@ const token = storage.get();
     modifProfil.style.display = "none";
     const modifProjets = document.querySelector(".modif_projets");
     modifProjets.style.display = "none";
-    filtres.style.display = "block";
+    filtres.style.display = "flex";
 }
 
+loginLogout.addEventListener("click", function(){
+    if ((storage.isconnected)!= true){
+        sessionStorage.removeItem('user')
+    }
+})
