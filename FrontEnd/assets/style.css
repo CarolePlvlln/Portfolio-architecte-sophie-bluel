@@ -249,7 +249,7 @@ h2 {
 }
 
 p {
-	font-size: 15px;
+	font-size: 14px;
 }
 
 nav ul {
@@ -393,7 +393,7 @@ nav a:hover {
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 400;
-	margin-left: 4px;
+	margin-left: 10px;
 	display: inline;
 }
 
