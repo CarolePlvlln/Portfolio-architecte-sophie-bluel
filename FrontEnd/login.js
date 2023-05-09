@@ -54,8 +54,9 @@ loginForm.addEventListener('click', async function (e) {
                 } else {
                     storage.save(data)
                     //Evite d'ouvrir une nouvelle fenetre.
-                    //window.location = "/index.html" ; pour eviter localhost 5500 lorsq'on déploit
-                    window.location.assign("http://127.0.0.1:5500/FrontEnd/index.html");
+                    window.location = "index.html" ; 
+                    //pour eviter localhost 5500 lorsqu'on déploit
+                    //window.location.assign("http://127.0.0.1:5500/FrontEnd/index.html");
                 }
             })
             .catch((err) => {
