@@ -288,6 +288,7 @@ formSendWork.addEventListener('click', function (e) {
                     return response.json()
                 })
                 .then(addDom => {
+                    //ajout du projet au DOM
                     projets.push(addDom);
                     afficherProjets(projets);
                     afficherGalleryModal(projets);
@@ -320,9 +321,10 @@ function prepareDelete() {
             }) //retirer l'élément du DOM sans tout recharger
                 .then(result => {
                     parent.remove();
+                    //récuperer index projet
                     const index = projets.findIndex((elem) => elem.id == id);
+                    //supprimer projet du DOM
                     projets.splice(index, 1);
-
                     document.querySelector('[data-projet-id="' + id + '"').remove()
                 })
 
