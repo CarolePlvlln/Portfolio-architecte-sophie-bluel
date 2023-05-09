@@ -1,13 +1,13 @@
 import storage from "./storage.js";
 //var projets;
-
+let projets = [];
 // Tout englober ds une fonction async et l'appeler à la fin
 async function genererProjets() {
     // Récupération des projets depuis le fichier JSON
     //récupérer adresse http dans le swagger, onglet "works".
     //Fonction async donc pendant que l'on attend la réponse, on execute le code suivant.
     const reponse = await fetch('http://localhost:5678/api/works');
-    const projets = await reponse.json();
+    projets = await reponse.json();
 
     //On récupère "projets" de la "function afficherProjets(projets)" pour pouvoir le rendre dispo ici pour pouvoir filter les boutons
     afficherProjets(projets);
@@ -26,12 +26,12 @@ async function genererProjets() {
             if (categoryId != 0) {
                 projetsFiltres = projets.filter(function (projet) {
                     return projet.categoryId == categoryId;
-                });   
+                });
             }
             //On appelle la fonction pour afficher les résultats.
             afficherProjets(projetsFiltres);
         });
-    
+
 
     }
     //ajouter bouton pour ouvir la modale et faire apparaître les projets.
@@ -64,9 +64,10 @@ function afficherProjets(projets) {
         //Récupération de l'élément du DOM qui accueillera les projets
 
         const filtresProjetsElement = document.createElement("filtres-projets")
+        filtresProjetsElement.dataset.projetId = id.id;
         const imageUrlElement = document.createElement("img");
         imageUrlElement.src = id.imageUrl;
-        imageUrlElement.alt= id.title;
+        imageUrlElement.alt = id.title;
         const titleElement = document.createElement("p");
         titleElement.innerText = id.title;
 
@@ -266,10 +267,9 @@ formSendWork.addEventListener('click', function (e) {
     formData.append('title', title);
     formData.append('category', categoryValue);
 
-
     if (title == "" || categoryValue == "" || imgUrl == "") {
         // throw error
-        alert("Vous n'avez pas correctement rempli les champs");
+        // alert("Vous n'avez pas correctement rempli les champs");
     } else {
 
         if (storage.isconnected() == false) {
@@ -284,21 +284,13 @@ formSendWork.addEventListener('click', function (e) {
                 },
                 body: formData,
             })
-
-                //Reponse API
                 .then(function (response) {
                     return response.json()
                 })
-                .then (addDom =>{
-                    document.body.appendChild(response.json());
-                })
-                .then(success => {
-                    console.log(success + "Projet ajouté");
-                })
-                
-                .then (workAdded => {
-                    afficherProjets;
-                    afficherGalleryModal;
+                .then(addDom => {
+                    projets.push(addDom);
+                    afficherProjets(projets);
+                    afficherGalleryModal(projets);
                 })
                 .catch((err) => {
                     console.error(err + "Erreur");
@@ -327,15 +319,13 @@ function prepareDelete() {
                 }
             }) //retirer l'élément du DOM sans tout recharger
                 .then(result => {
-                    parent.remove()
+                    parent.remove();
+                    const index = projets.findIndex((elem) => elem.id == id);
+                    projets.splice(index, 1);
+
+                    document.querySelector('[data-projet-id="' + id + '"').remove()
                 })
-                .then(success => {
-                    console.log(success + "Projet ajouté")
-                })
-                .then (workDeleted => {
-                    afficherProjets;
-                    afficherGalleryModal;
-                })
+
 
         });
     })
@@ -366,8 +356,8 @@ if (storage.isconnected()) {
     filtres.style.display = "flex";
 }
 
-loginLogout.addEventListener("click", function(){
-    if ((storage.isconnected)!= true){
+loginLogout.addEventListener("click", function () {
+    if ((storage.isconnected) != true) {
         sessionStorage.removeItem('user')
     }
 })
