@@ -186,6 +186,7 @@ function checkFormValidity() {
         imgSrc = img.getAttribute("src");
     }
     //;
+
     if ((isTitleValid) && (isCategoryValid) && (imgSrc !== "")) {
         formSendWork.removeAttribute('disabled');
         formSendWork.style.backgroundColor = "#1D6154";
@@ -246,7 +247,6 @@ function displayImage(event) {
         element.style.display = "none"
     };
     figureElement.appendChild(imageElement);
-    //figureElement.appendChild(figcaptionElement);
     document.body.querySelector(".preview_image").append(figureElement);
     checkFormValidity();
 }
@@ -254,7 +254,6 @@ function displayImage(event) {
 
 //Envoyer nouveau projet
 const formSendWork = document.querySelector('#btn_valider_image');
-
 formSendWork.addEventListener('click', function (e) {
     e.preventDefault();
     const formData = new FormData();
@@ -267,10 +266,10 @@ formSendWork.addEventListener('click', function (e) {
     formData.append('title', title);
     formData.append('category', categoryValue);
 
+
     if (title == "" || categoryValue == "" || imgUrl == "") {
         // throw error
         alert("Vous n'avez pas correctement rempli les champs");
-
     } else {
 
         if (storage.isconnected() == false) {
@@ -290,10 +289,17 @@ formSendWork.addEventListener('click', function (e) {
                 .then(function (response) {
                     return response.json()
                 })
-                .then(success => {
-                    console.log(success + "Projet ajouté")
+                .then (addDom =>{
+                    document.body.appendChild(response.json());
                 })
-
+                .then(success => {
+                    console.log(success + "Projet ajouté");
+                })
+                
+                .then (workAdded => {
+                    afficherProjets;
+                    afficherGalleryModal;
+                })
                 .catch((err) => {
                     console.error(err + "Erreur");
                 })
@@ -325,6 +331,10 @@ function prepareDelete() {
                 })
                 .then(success => {
                     console.log(success + "Projet ajouté")
+                })
+                .then (workDeleted => {
+                    afficherProjets;
+                    afficherGalleryModal;
                 })
 
         });
