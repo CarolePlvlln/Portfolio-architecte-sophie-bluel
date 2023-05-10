@@ -1,7 +1,6 @@
 import storage from "./storage.js";
-//var projets;
 let projets = [];
-// Tout englober ds une fonction async et l'appeler à la fin
+// Tout englober dans une fonction async et l'appeler à la fin
 async function genererProjets() {
     // Récupération des projets depuis le fichier JSON
     //récupérer adresse http dans le swagger, onglet "works".
@@ -84,9 +83,6 @@ function afficherGalleryModal(projets) {
     modalGallery.innerHTML = '';
     for (let i = 0; i < projets.length; i++) {
         const id = projets[i];
-
-        //const sort_num = $('input[type="hidden"]:last').attr('id') + counter ;
-        // counter ++;
         modalGallery.innerHTML += `
         <div class="image_icone modal_view_gallery" data-id="${id.id}">
         <i class="icone onDelete fa-solid fa-trash-can" ></i>
@@ -104,7 +100,6 @@ function afficherGalleryModal(projets) {
 const modalContainer = document.querySelector(".modal-container");
 modalContainer.style.display = "block";
 const modalBody = document.querySelector(".modal");
-const modalAddWork = document.querySelectorAll(".modal_add_work");
 
 //Afficher/masquer les éléments pour ajouter un projet dans la modale
 function afficherAjoutProjet() {
@@ -152,7 +147,7 @@ btnAddWork.addEventListener("click", function (e) {
 })
 
 
-
+//Vérification validité formulaire
 const champsTitre = document.querySelector("#champs_projet");
 const category = document.getElementById('categorie_projet');
 let isTitleValid = false;
@@ -179,14 +174,12 @@ category.addEventListener('change', function () {
 });
 
 
-
 function checkFormValidity() {
     const img = document.getElementById("image")
     let imgSrc = "";
     if (img) {
         imgSrc = img.getAttribute("src");
     }
-    //;
 
     if ((isTitleValid) && (isCategoryValid) && (imgSrc !== "")) {
         formSendWork.removeAttribute('disabled');
@@ -236,7 +229,6 @@ function previewFile() {
 function displayImage(event) {
     const figureElement = document.createElement("figure");
     figureElement.id = "figure";
-    //(propriété "result" : contenu du ficher)
     const imageElement = document.createElement("img");
     imageElement.id = "image";
     imageElement.src = event.target.result;
@@ -268,8 +260,7 @@ formSendWork.addEventListener('click', function (e) {
     formData.append('category', categoryValue);
 
     if (title == "" || categoryValue == "" || imgUrl == "") {
-        // throw error
-        // alert("Vous n'avez pas correctement rempli les champs");
+        alert("Vous n'avez pas correctement rempli les champs");
     } else {
 
         if (storage.isconnected() == false) {
