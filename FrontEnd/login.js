@@ -10,7 +10,6 @@ loginForm.addEventListener('click', async function (e) {
         valid = valid && input.reportValidity();
         console.log("form valid", input, valid);
         if (!valid) {
-            alert ("Veuillez renseigner ce champs")
             break;
         }
         console.log(valid);
