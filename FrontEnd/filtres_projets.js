@@ -283,6 +283,8 @@ formSendWork.addEventListener('click', function (e) {
                     projets.push(addDom);
                     afficherProjets(projets);
                     afficherGalleryModal(projets);
+                    modalContainer.classList.toggle("active");
+                    alert ("Projet ajouté");
                 })
                 .catch((err) => {
                     console.error(err + "Erreur");
@@ -316,7 +318,8 @@ function prepareDelete() {
                     const index = projets.findIndex((elem) => elem.id == id);
                     //supprimer projet du DOM
                     projets.splice(index, 1);
-                    document.querySelector('[data-projet-id="' + id + '"').remove()
+                    document.querySelector('[data-projet-id="' + id + '"').remove();
+                    
                 })
 
 
