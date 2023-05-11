@@ -284,7 +284,6 @@ formSendWork.addEventListener('click', function (e) {
                     afficherProjets(projets);
                     afficherGalleryModal(projets);
                     modalContainer.classList.toggle("active");
-                    alert ("Projet ajouté");
                 })
                 .catch((err) => {
                     console.error(err + "Erreur");
